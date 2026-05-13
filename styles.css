@@ -312,6 +312,11 @@ pre code {
   margin-top: 12px;
 }
 
+.route-result.is-warning {
+  border-color: rgba(242, 184, 75, 0.65);
+  background: rgba(242, 184, 75, 0.08);
+}
+
 .route-result h3 {
   margin-top: 0;
 }
@@ -353,6 +358,10 @@ pre code {
 
 .route-section.is-dimmed {
   opacity: 0.7;
+}
+
+.is-hidden {
+  display: none;
 }
 
 ul,
