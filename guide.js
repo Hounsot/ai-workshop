@@ -10,11 +10,11 @@ const routeConfig = {
   os: {
     macos: {
       title: "Маршрут для участника на macOS",
-      sections: ["macos", "access", "cursor", "requirements", "final-check"],
+      sections: ["macos", "access", "cursor", "final-check"],
     },
     windows: {
       title: "Маршрут для участника на Windows",
-      sections: ["windows", "access", "cursor", "requirements", "final-check"],
+      sections: ["windows", "access", "cursor", "final-check"],
     },
   },
   device: {
@@ -23,8 +23,8 @@ const routeConfig = {
       sections: [],
     },
     work: {
-      description: "Рабочее устройство, скорее всего, не подойдет. Нужен личный компьютер.",
-      sections: ["work-device"],
+      description: "Рабочее устройство не подойдет. Для воркшопа нужен личный компьютер.",
+      sections: [],
     },
   },
   install: {
@@ -33,8 +33,8 @@ const routeConfig = {
       sections: [],
     },
     it: {
-      description: "Админские права обязательны. Без них установка Cursor и инструментов может не пройти.",
-      sections: ["work-device"],
+      description: "Админские права обязательны. Без них установка Cursor может не пройти.",
+      sections: [],
     },
   },
   accounts: {
@@ -44,7 +44,7 @@ const routeConfig = {
     },
     missing: {
       description: "Нужно подготовить Cursor, GitHub и при необходимости Figma.",
-      sections: ["access", "requirements"],
+      sections: ["access"],
     },
   },
   vpn: {
@@ -62,12 +62,25 @@ const routeConfig = {
 const routeTitle = document.querySelector("#route-title");
 const routeDescription = document.querySelector("#route-description");
 const routeSteps = document.querySelector("#route-steps");
+const routeResult = document.querySelector("#route-result");
 const choiceGroups = document.querySelectorAll("[data-choice-group]");
+const afterDeviceCards = document.querySelectorAll("[data-after-device]");
 const routeSections = document.querySelectorAll(".route-section");
 const sidebarLinks = document.querySelectorAll(".sidebar-nav a");
 
 function setChoice(groupName, value, button) {
   state[groupName] = value;
+
+  if (groupName === "device" && value === "work") {
+    state.os = null;
+    state.install = null;
+    state.accounts = null;
+    state.vpn = null;
+
+    afterDeviceCards.forEach((card) => {
+      card.querySelectorAll(".choice-chip").forEach((chip) => chip.classList.remove("is-selected"));
+    });
+  }
 
   const group = button.closest(".choice-group");
   group.querySelectorAll(".choice-chip").forEach((chip) => {
@@ -81,25 +94,16 @@ function buildSteps() {
   const steps = [];
   const emphasizedSections = new Set();
 
-  if (state.device === "work") {
-    steps.push({
-      label: "Рабочее устройство не подойдет для подготовки: возьмите личный ноутбук.",
-      href: "#work-device",
-    });
-    emphasizedSections.add("work-device");
-  }
-
   if (state.install === "it") {
     steps.push({
-      label: "Получите админские права заранее: они обязательны для установки Cursor и технических инструментов.",
-      href: "#work-device",
+      label: "Получите админские права заранее: они обязательны для установки Cursor.",
+      href: "#macos",
     });
-    emphasizedSections.add("work-device");
   }
 
   if (state.os === "macos") {
     steps.push({
-      label: "Пройдите инструкцию для macOS: Cursor, Node.js, Command Line Tools и проверка Agent.",
+      label: "Пройдите инструкцию для macOS: установка Cursor и проверка Agent.",
       href: "#macos",
     });
     routeConfig.os.macos.sections.forEach((section) => emphasizedSections.add(section));
@@ -107,7 +111,7 @@ function buildSteps() {
 
   if (state.os === "windows") {
     steps.push({
-      label: "Пройдите инструкцию для Windows: Cursor, технические инструменты и проверка Editor/Agent.",
+      label: "Пройдите инструкцию для Windows: установка Cursor и проверка Editor/Agent.",
       href: "#windows",
     });
     routeConfig.os.windows.sections.forEach((section) => emphasizedSections.add(section));
@@ -119,12 +123,11 @@ function buildSteps() {
       href: "#access",
     });
     emphasizedSections.add("access");
-    emphasizedSections.add("requirements");
   }
 
   if (state.vpn === "missing") {
     steps.push({
-      label: "Подготовьте VPN на личном устройстве. На рабочий компьютер VPN не ставим.",
+      label: "Подготовьте VPN на личном устройстве.",
       href: "#access",
     });
     emphasizedSections.add("access");
@@ -149,17 +152,38 @@ function buildSteps() {
 
 function updateRoute() {
   const selections = Object.values(state).filter(Boolean).length;
+  const isWorkDevice = state.device === "work";
+
+  afterDeviceCards.forEach((card) => {
+    card.classList.toggle("is-hidden", isWorkDevice);
+  });
 
   if (!selections) {
     routeTitle.textContent = "Выберите сценарий выше";
     routeDescription.textContent =
       "После выбора мы покажем, готовы ли вы к воркшопу.";
     routeSteps.innerHTML = "";
+    routeResult.classList.remove("is-warning");
     routeSections.forEach((section) => {
       section.classList.remove("is-emphasized", "is-dimmed");
     });
     return;
   }
+
+  if (isWorkDevice) {
+    routeTitle.textContent = "Рабочее устройство не подойдет";
+    routeDescription.textContent =
+      "Для участия нужен личный компьютер. На рабочем устройстве нельзя ставить VPN, могут быть ограничения на установку Cursor и доступ к AI-сервисам.";
+    routeSteps.innerHTML = "<li>Возьмите личный ноутбук и пройдите проверку заново.</li>";
+    routeResult.classList.add("is-warning");
+    routeSections.forEach((section) => {
+      section.classList.remove("is-emphasized");
+      section.classList.add("is-dimmed");
+    });
+    return;
+  }
+
+  routeResult.classList.remove("is-warning");
 
   const osText = state.os === "macos" ? "macOS" : state.os === "windows" ? "Windows" : "не выбрана";
 
