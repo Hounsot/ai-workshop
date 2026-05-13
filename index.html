@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Гайд к воркшопу по нейросетям</title>
+    <meta
+      name="description"
+      content="Интерактивный гайд по подготовке к воркшопу по работе с нейросетями: Cursor, VPN, GitHub, Node.js и сценарии для macOS и Windows."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#top">
+          <span class="brand-mark">C</span>
+          <span>
+            <strong>Пятничный воркшоп</strong>
+            <small>C вопросами: @hounsout</small>
+          </span>
+        </a>
+
+        <nav class="sidebar-nav" aria-label="Навигация по гайду">
+          <a href="#start">Старт</a>
+          <a href="#route-builder">Подобрать маршрут</a>
+          <a href="#quick-start">Быстрый минимум</a>
+          <a href="#macos">macOS</a>
+          <a href="#windows">Windows</a>
+          <a href="#work-device">Рабочий компьютер</a>
+          <a href="#access">Оплата и доступ</a>
+          <a href="#cursor">Как пользоваться Cursor</a>
+          <a href="#requirements">Доп. требования</a>
+          <a href="#workspace">Рабочее место</a>
+          <a href="#security">Безопасность</a>
+          <a href="#final-check">Финальная проверка</a>
+          <a href="#help">Если что-то сломалось</a>
+        </nav>
+      </aside>
+
+      <main class="content" id="top">
+        <section class="hero" id="start">
+          <div class="hero-copy">
+            <span class="eyebrow">Подготовка</span>
+            <h1>Подготовка к воркшопу по работе с нейросетями</h1>
+            <p class="hero-text">
+              Это интерактивный гайд с развилками. Выберите
+              свой сценарий: <code>macOS</code>
+              или <code>Windows</code>, личный или рабочий компьютер, с VPN или
+              без него.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-secondary" href="#final-check">Открыть финальный чек</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <p class="card-label">Нужно к старту</p>
+            <ul class="compact-list">
+              <li>Подготовить <code>VPN</code> на личном устройстве</li>
+              <li>Поставить <code>Cursor</code> и оплатить подписку</li>
+              <li>Зарегистрироваться на <code>GitHub</code></li>
+              <li>Скачать <code></code>node.js</code> и <code>npm</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="route-builder">
+          <div class="section-header">
+            <span class="eyebrow">Проверка</span>
+            <h2>Проверьте, готовы ли вы</h2>
+            <p>
+              Ответьте на несколько вопросов. Если все ок, ниже появится короткое
+              подтверждение. Если нет, покажем, что именно нужно поправить.
+            </p>
+          </div>
+
+          <div class="quiz-grid">
+            <div class="quiz-card">
+              <h3>1. Какая у вас система?</h3>
+              <div class="choice-group" data-choice-group="os">
+                <button class="choice-chip" data-value="macos">macOS</button>
+                <button class="choice-chip" data-value="windows">Windows</button>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <h3>2. Какое устройство?</h3>
+              <p>Для воркшопа нужен личный компьютер. Рабочее устройство может не подойти из-за ограничений безопасности.</p>
+              <div class="choice-group" data-choice-group="device">
+                <button class="choice-chip" data-value="personal">Личное</button>
+                <button class="choice-chip" data-value="work">Рабочее</button>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <h3>3. Есть админские права?</h3>
+              <p>Они обязательны: нужно установить Cursor, а иногда Git, Node.js и системные инструменты.</p>
+              <div class="choice-group" data-choice-group="install">
+                <button class="choice-chip" data-value="self">Да, есть</button>
+                <button class="choice-chip" data-value="it">Нет</button>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <h3>4. Есть Cursor, Figma и GitHub?</h3>
+              <p>
+                Нужны аккаунты
+                <a href="https://www.cursor.com/" target="_blank" rel="noreferrer">Cursor</a>,
+                <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+                и, если будут макеты,
+                <a href="https://www.figma.com/" target="_blank" rel="noreferrer">Figma</a>.
+                Cursor лучше сразу оплатить: <a href="#access">варианты оплаты</a>.
+              </p>
+              <div class="choice-group" data-choice-group="accounts">
+                <button class="choice-chip" data-value="ready">Да, все есть</button>
+                <button class="choice-chip" data-value="missing">Нужно подготовить</button>
+              </div>
+            </div>
+
+            <div class="quiz-card">
+              <h3>5. VPN готов?</h3>
+              <p>Некоторые AI-сервисы из России могут открываться нестабильно. VPN нужен на личном устройстве, не на рабочем.</p>
+              <div class="choice-group" data-choice-group="vpn">
+                <button class="choice-chip" data-value="ready">Да</button>
+                <button class="choice-chip" data-value="missing">Еще нет</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="route-result" id="route-result">
+            <div>
+              <p class="card-label">Результат проверки</p>
+              <h3 id="route-title">Выберите сценарий выше</h3>
+              <p id="route-description">
+                После выбора мы покажем, готовы ли вы к воркшопу.
+              </p>
+            </div>
+            <ol id="route-steps" class="route-steps"></ol>
+          </div>
+        </section>
+
+        <section class="section" id="quick-start">
+          <div class="section-header">
+            <h2>Быстрый минимум</h2>
+          </div>
+          <div class="card">
+            <ul class="check-list">
+              <li>Скачайте и установите <code>Cursor</code>.</li>
+              <li>Войдите в аккаунт <code>Cursor</code> или создайте новый.</li>
+              <li>Подготовьте <code>VPN</code> на личном устройстве.</li>
+              <li>Проверьте, что Cursor отвечает в режимах <code>Editor</code> и <code>Agent</code>.</li>
+              <li>Зарегистрируйтесь на <code>GitHub</code>, если аккаунта еще нет.</li>
+              <li>
+                Поставьте технические инструменты для практики:
+                <a href="#requirements">дополнительные требования</a>.
+              </li>
+              <li>По возможности подготовьте второй экран или второе устройство.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section route-section" id="macos" data-route="macos">
+          <div class="section-header">
+            <h2>macOS</h2>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Проверьте, что устройство подходит</h3>
+              <ul>
+                <li>Можно устанавливать приложения.</li>
+                <li>Можно открывать внешние сайты и логиниться в сервисы.</li>
+                <li>Можно запускать <code>Cursor</code> и работать с файлами проекта.</li>
+              </ul>
+              <p>
+                Если это рабочий Mac, сначала откройте раздел
+                <a href="#work-device">рабочий компьютер</a>.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Установите Cursor</h3>
+              <ol>
+                <li>Перейдите на <a href="https://www.cursor.com/" target="_blank" rel="noreferrer">cursor.com</a>.</li>
+                <li>Скачайте версию для <code>macOS</code>.</li>
+                <li>Установите приложение и войдите в аккаунт.</li>
+              </ol>
+              <p>
+                Если вы уже используете <code>VS Code</code>, Cursor будет знакомым.
+                Отдельное окно <code>Agent</code> визуально похоже на ChatGPT и Claude.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Поставьте дополнительные инструменты</h3>
+              <ul>
+                <li><a href="https://git-scm.com/" target="_blank" rel="noreferrer">Git</a></li>
+                <li><a href="https://nodejs.org/" target="_blank" rel="noreferrer">Node.js LTS</a></li>
+                <li><code>Google Chrome</code></li>
+                <li><code>Figma</code></li>
+              </ul>
+              <p>Поставьте Node.js через <code>nvm</code> в терминале:</p>
+              <pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+\. "$HOME/.nvm/nvm.sh"
+nvm install 24
+node -v
+npm -v</code></pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div>
+              <h3>Если macOS просит developer tools</h3>
+              <p>
+                При установке <code>Node.js</code>, <code>npm</code>-пакетов или других CLI-инструментов
+                могут понадобиться Apple <code>Command Line Tools</code>.
+              </p>
+              <ul>
+                <li>Терминал пишет про отсутствующие developer tools.</li>
+                <li>Система просит установить command line tools.</li>
+                <li>Не ставятся зависимости, которым нужны системные утилиты для сборки.</li>
+              </ul>
+              <pre><code>xcode-select --install</code></pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">5</div>
+            <div>
+              <h3>Проверьте, что Cursor отвечает</h3>
+              <ol>
+                <li>Откройте Cursor.</li>
+                <li>Выберите <code>File &gt; Open Folder</code>.</li>
+                <li>Укажите папку проекта или создайте папку для практики.</li>
+              </ol>
+              <p>Проверьте оба режима: <code>Editor</code> и <code>Agent</code>.</p>
+              <p>Открыть <code>Agent</code>: <code>Cmd + I</code></p>
+              <pre><code>Привет! Кратко объясни, чем Cursor отличается от обычного VS Code.</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section route-section" id="windows" data-route="windows">
+          <div class="section-header">
+            <h2>Windows</h2>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Проверьте, что устройство подходит</h3>
+              <ul>
+                <li>Можно устанавливать приложения.</li>
+                <li>Можно открывать внешние сайты и логиниться в сервисы.</li>
+                <li>Можно запускать <code>Cursor</code> и работать с файлами проекта.</li>
+              </ul>
+              <p>
+                Если это рабочий компьютер, сначала откройте раздел
+                <a href="#work-device">рабочий компьютер</a>.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Установите Cursor</h3>
+              <ol>
+                <li>Перейдите на <a href="https://www.cursor.com/" target="_blank" rel="noreferrer">cursor.com</a>.</li>
+                <li>Скачайте версию для <code>Windows</code>.</li>
+                <li>Установите приложение и войдите в аккаунт.</li>
+              </ol>
+              <p>
+                Если вы уже используете <code>VS Code</code>, Cursor покажется знакомым.
+                Внутри также есть окно <code>Agent</code>, похожее на ChatGPT и Claude.
+              </p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Поставьте дополнительные инструменты</h3>
+              <ul>
+                <li><a href="https://git-scm.com/" target="_blank" rel="noreferrer">Git</a></li>
+                <li><a href="https://nodejs.org/" target="_blank" rel="noreferrer">Node.js LTS</a></li>
+                <li><code>Google Chrome</code></li>
+                <li><code>Figma</code></li>
+              </ul>
+              <p>На <code>Windows 11</code> Git часто уже есть, но лучше проверить это заранее.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div>
+              <h3>Проверьте, что Cursor отвечает</h3>
+              <ol>
+                <li>Откройте Cursor.</li>
+                <li>Выберите <code>File &gt; Open Folder</code>.</li>
+                <li>Укажите папку проекта или создайте папку для практики.</li>
+              </ol>
+              <p>Проверьте оба режима: <code>Editor</code> и <code>Agent</code>.</p>
+              <p>Открыть <code>Agent</code>: <code>Ctrl + I</code></p>
+              <pre><code>Привет! Кратко объясни, чем Cursor отличается от обычного VS Code.</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section route-section" id="work-device" data-route="work">
+          <div class="section-header">
+            <span class="eyebrow">Ограничения</span>
+            <h2>Если у вас рабочий компьютер</h2>
+          </div>
+          <div class="card warning-card">
+            <p>
+              Активное участие в воркшопе требует от вас использования личного компьютера с возможностью устанавливать приложения и работать с файлами проекта.
+            </p>
+            <p class="warning-text">
+              Не устанавливайте <code>VPN</code> на рабочий компьютер без согласования и не обходите корпоративные ограничения самостоятельно.
+            </p>
+            <p>
+              Лучший вариант - участвовать с личного компьютера.
+            </p>
+          </div>
+        </section>
+
+        <section class="section route-section" id="access" data-route="access">
+          <div class="section-header">
+            <h2>Оплата и доступ</h2>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div>
+              <h3>Проверьте доступность сервисов</h3>
+              <ul>
+                <li>Открывается ли сайт Cursor.</li>
+                <li>Проходит ли авторизация.</li>
+                <li>Работает ли AI-чат в Cursor.</li>
+                <li>Доступна ли оплата. <a href="https://payment.mts.ru/tools/cursor" target="_blank" rel="noreferrer">МТС Оплата</a> или <a href="https://plati.market/itm/cursorai-pro-business-ultra-subscription-activation/4758785" target="_blank" rel="noreferrer">Plati.Market</a></li>
+                <li>Стабильно ли сервис работает из вашей сети.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div>
+              <h3>Подготовьте VPN</h3>
+              <ul>
+                <li>Ставьте <code>VPN</code> на личное устройство.</li>
+                <li>Не ставьте VPN на рабочий компьютер без согласования.</li>
+                <li>Если корпоративная сеть мешает доступу, по возможности используйте личный интернет.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div>
+              <h3>Оплатите Cursor</h3>
+              <p>Для воркшопа обычно достаточно <code>Cursor Pro</code>. Если нужен расширенный лимит, можно взять <code>Ultra</code>.</p>
+              <ul>
+                <li><a href="https://payment.mts.ru/tools/cursor" target="_blank" rel="noreferrer">МТС Оплата</a></li>
+                <li><a href="https://plati.market/itm/cursorai-pro-business-ultra-subscription-activation/4758785" target="_blank" rel="noreferrer">Plati.Market</a></li>
+                <li>Любой другой удобный и проверенный способ</li>
+              </ul>
+              <p>Важно: подписка должна оформляться на вашу почту, а на активацию лучше заложить целый день.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="cursor">
+          <div class="section-header">
+            <h2>Как пользоваться Cursor на воркшопе</h2>
+          </div>
+
+          <div class="card">
+            <h3>Как открыть проект</h3>
+            <ol>
+              <li>Откройте Cursor.</li>
+              <li>Выберите <code>File &gt; Open Folder</code>.</li>
+              <li>Укажите папку проекта.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3>Как начать работать с Agent</h3>
+            <p><code>Agent</code> умеет искать по проекту, читать файлы, предлагать изменения и запускать команды в терминале.</p>
+            <ul>
+              <li><code>Cmd + I</code> на <code>macOS</code></li>
+              <li><code>Ctrl + I</code> на <code>Windows</code></li>
+            </ul>
+            <pre><code>Add a dark mode toggle to the settings page.</code></pre>
+            <p>
+              Можно также запускать агентов из браузера через
+              <a href="https://cursor.com/agents" target="_blank" rel="noreferrer">cursor.com/agents</a>.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Как проверять изменения Agent</h3>
+            <p>Изменения применяются по мере работы <code>Agent</code>. Просматривайте их в <code>diff view</code> и отклоняйте все, что вам не подходит.</p>
+          </div>
+
+          <div class="card">
+            <h3>Как дать Agent больше контекста</h3>
+            <p>Чтобы направить Agent точнее, используйте <code>@</code> в поле ввода.</p>
+            <ul>
+              <li><code>@auth.ts</code></li>
+              <li><code>@src/components/</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="requirements">
+          <div class="section-header">
+            <h2>Дополнительные требования</h2>
+            <p>Этот блок нужен, если на воркшопе вы будете не только общаться с AI, но и запускать или собирать проект локально.</p>
+          </div>
+          <div class="card">
+            <ul>
+              <li><code>Git</code></li>
+              <li><code>Node.js LTS</code></li>
+              <li>аккаунт <code>GitHub</code></li>
+              <li>современный браузер</li>
+              <li>доступ к <code>Figma</code>, если он нужен в практической части</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="workspace">
+          <div class="section-header">
+            <h2>Организация рабочего места</h2>
+          </div>
+          <div class="card">
+            <p>Второй экран не обязателен, но сильно упрощает участие.</p>
+            <ul>
+              <li>На основном экране открыт <code>Cursor</code>.</li>
+              <li>На втором экране открыта трансляция или материалы воркшопа.</li>
+            </ul>
+            <p>Если второго монитора нет, можно использовать планшет, другой ноутбук или телефон.</p>
+          </div>
+        </section>
+
+        <section class="section" id="security">
+          <div class="section-header">
+            <h2>Безопасность и данные</h2>
+          </div>
+          <div class="card">
+            <p>Во время работы с AI-инструментами не используйте:</p>
+            <ul>
+              <li>пароли;</li>
+              <li>токены доступа;</li>
+              <li>приватные ключи;</li>
+              <li>персональные данные клиентов или сотрудников;</li>
+              <li>коммерчески чувствительные материалы;</li>
+              <li>внутренние документы компании без разрешения.</li>
+            </ul>
+            <p>Если нужно протестировать сценарий, используйте обезличенные или тестовые данные.</p>
+          </div>
+        </section>
+
+        <section class="section" id="final-check">
+          <div class="section-header">
+            <h2>Финальная проверка</h2>
+          </div>
+          <div class="card">
+            <ol class="final-check-list">
+              <li><code>Cursor</code> установлен и запускается.</li>
+              <li>Вы вошли в аккаунт.</li>
+              <li>Подписка активна или есть доступ к AI-функциям.</li>
+              <li><code>VPN</code> работает на разрешенном устройстве.</li>
+              <li><code>GitHub</code>-аккаунт готов.</li>
+              <li><code>Cursor</code> отвечает в режиме <code>Editor</code>.</li>
+              <li><code>Cursor</code> отвечает в режиме <code>Agent</code>.</li>
+              <li>Есть место на диске для материалов воркшопа.</li>
+              <li>Второй экран или устройство для просмотра трансляции готовы.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="help">
+          <div class="section-header">
+            <h2>Что делать, если что-то не работает</h2>
+          </div>
+
+          <div class="card">
+            <h3>Не получается установить Cursor</h3>
+            <ul>
+              <li>Проверьте права администратора.</li>
+              <li>Попробуйте скачать установщик еще раз.</li>
+              <li>Если устройство рабочее, сначала идите в IT.</li>
+              <li>Если все равно не получается, обратитесь к <a href="https://t.me/hounsout" target="_blank" rel="noreferrer">Матвею</a>.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Не работает авторизация или AI-чат</h3>
+            <ul>
+              <li>Проверьте интернет.</li>
+              <li>Попробуйте другую сеть.</li>
+              <li>Проверьте доступность сервиса через <code>VPN</code>.</li>
+              <li>Убедитесь, что подписка или лимиты аккаунта активны.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Не получается оплатить подписку</h3>
+            <ul>
+              <li>Попробуйте МТС Оплату.</li>
+              <li>Попробуйте <code>Plati.Market</code>.</li>
+              <li>Заложите время на активацию.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./guide.js"></script>
+  </body>
+</html>
